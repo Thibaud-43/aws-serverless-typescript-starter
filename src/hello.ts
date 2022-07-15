@@ -5,7 +5,8 @@ interface Response {
     'Access-Control-Allow-Origin': string;
   };
 }
-export const hello = (): string => 'hello';
+const hello = (): string => 'hello';
+
 const handler = async (): Promise<Response> => {
   const response = {
     statusCode: 200,
@@ -16,4 +17,4 @@ const handler = async (): Promise<Response> => {
   };
   return response;
 };
-export default handler;
+export { handler, hello };
