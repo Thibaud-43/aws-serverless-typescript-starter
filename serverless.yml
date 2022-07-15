@@ -1,0 +1,25 @@
+service: service-name
+	
+useDotenv: true
+provider:
+  name: aws
+  region: eu-west-1
+  runtime: nodejs12.x
+  stage: prod
+  profile : ${env:AWS_PROFILE}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'lambda:InvokeFunction'
+      Resource: '*'
+
+functions:
+  hello:
+    handler: src/hello.default
+    events:
+      - http:
+          path: hello
+          method: get
+
+plugins:
+  - serverless-webpack
